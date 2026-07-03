@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On Track — Focus without force</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="garden.css">
+</head>
+<body>
+  <div class="account-gate" id="accountGate">
+    <div class="account-card">
+      <button class="gate-close" id="localOnly">×</button>
+      <div class="brand gate-brand"><span class="brand-mark">↗</span> on track together</div>
+      <h1>Come back to your grove.</h1><p>Your focus history follows you across computers.</p>
+      <div class="auth-tabs"><button class="active" data-auth="login">SIGN IN</button><button data-auth="register">CREATE ACCOUNT</button></div>
+      <form id="authForm">
+        <label class="avatar-picker" id="avatarPicker"><input type="file" id="avatarInput" accept="image/png,image/jpeg,image/webp"><span id="avatarPreview">＋</span><small>PROFILE PHOTO</small></label>
+        <input id="authName" placeholder="Nickname" maxlength="24" autocomplete="username" required>
+        <input id="authPassword" type="password" placeholder="Password" minlength="6" maxlength="72" autocomplete="current-password" required>
+        <button id="authSubmit">SIGN IN</button>
+      </form>
+      <p class="auth-note" id="authNote">New here? Choose “Create account.”</p>
+    </div>
+  </div>
+  <header>
+    <a class="brand" href="#"><span class="brand-mark">↗</span> on track</a>
+    <div class="header-right"><button class="account-chip" id="accountBtn"><span id="accountAvatar">?</span><b id="accountName">SIGN IN</b></button><span class="live-dot"></span><span id="statusText">ready when you are</span><button class="icon-btn" id="soundBtn" aria-label="Toggle sound">♪</button></div>
+  </header>
+
+  <main>
+    <section class="focus-panel">
+      <div class="eyebrow"><span>01</span> CURRENT TRACK</div>
+      <div class="task-row">
+        <input id="taskInput" class="task-input" value="Finish the thing that matters" aria-label="Focus task">
+        <button class="edit-btn" id="editTask" aria-label="Edit task">✎</button>
+      </div>
+
+      <div class="plant-stage" id="plantStage" data-stage="0" aria-label="Your focus plant">
+        <div class="sun">✦</div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div>
+        <svg class="plant-art" viewBox="0 0 220 170" aria-hidden="true">
+          <ellipse class="ground" cx="110" cy="153" rx="64" ry="10"/>
+          <path class="stem" d="M110 153 C110 122 108 92 111 55"/>
+          <path class="leaf leaf-a" d="M108 116 C78 110 68 91 70 78 C90 78 106 91 108 116Z"/>
+          <path class="leaf leaf-b" d="M110 96 C139 92 151 73 149 59 C128 60 112 73 110 96Z"/>
+          <path class="leaf leaf-c" d="M111 72 C89 65 82 49 85 38 C101 41 112 52 111 72Z"/>
+          <g class="crown"><circle cx="110" cy="42" r="29"/><circle cx="84" cy="53" r="22"/><circle cx="137" cy="54" r="24"/><circle cx="96" cy="27" r="20"/><circle cx="127" cy="27" r="21"/></g>
+          <g class="sparkles"><text x="49" y="40">✦</text><text x="162" y="80">✦</text></g>
+        </svg>
+        <div class="species-art" id="speciesArt" aria-hidden="true">🌳</div>
+        <div class="soil"><span id="growthLabel">A seed is waiting</span></div>
+      </div>
+
+      <div class="seed-picker" id="seedPicker" aria-label="Choose what to grow">
+        <span>CHOOSE A SEED</span>
+        <button class="active" data-species="oak" title="Oak tree">🌳</button>
+        <button data-species="pine" title="Pine tree">🌲</button>
+        <button data-species="cherry" title="Cherry blossom">🌸</button>
+        <button data-species="sunflower" title="Sunflower">🌻</button>
+        <button data-species="tulip" title="Tulip">🌷</button>
+        <button data-species="cactus" title="Cactus">🌵</button>
+      </div>
+
+      <div class="track-wrap">
+        <div class="track-labels"><span>SEED</span><span id="finishLabel">25 MIN · TREE</span></div>
+        <div class="rail"><div class="rail-fill" id="railFill"></div><div class="train" id="train"><span>♣</span></div></div>
+        <div class="sleepers" aria-hidden="true"></div>
+      </div>
+
+      <div class="timer" id="timer">25:00</div>
+      <div class="timer-caption" id="timerCaption">SET YOUR DIRECTION. THEN STAY WITH IT.</div>
+      <div class="controls">
+        <button class="primary" id="startBtn"><span id="startIcon">▶</span><span id="startText">START FOCUS</span></button>
+        <button class="float-btn" id="floatBtn" title="Keep a mini garden above other windows">▣ <span>FLOAT</span></button>
+        <button class="secondary" id="resetBtn">↺</button>
+      </div>
+      <div class="presets" id="presets">
+        <button data-min="15">15</button><button data-min="25" class="active">25</button><button data-min="45">45</button><button data-min="60">60</button><span>MINUTES</span>
+      </div>
+    </section>
+
+    <aside>
+      <div class="side-head"><div><span class="eyebrow"><span>02</span> SIDETRACKS</span><h2>Park it. Don’t chase it.</h2></div><span class="count" id="thoughtCount">0</span></div>
+      <form id="thoughtForm" class="thought-form"><input id="thoughtInput" placeholder="I should check..." maxlength="100"><button aria-label="Add sidetrack">+</button></form>
+      <div class="thoughts" id="thoughts"><div class="empty-state" id="emptyState"><span>⌁</span><p>Stray thoughts go here.<br>They’ll still exist when you’re done.</p></div></div>
+      <p class="shortcut">PRESS <kbd>⌘</kbd> <kbd>K</kbd> TO PARK A THOUGHT</p>
+      <section class="circle-panel">
+        <div class="circle-heading"><div><span class="eyebrow"><span>04</span> STUDY CIRCLE</span><h2>Grow better, together.</h2></div><span class="circle-live" id="circleLive">OFFLINE</span></div>
+        <form id="joinForm" class="join-form">
+          <input id="displayName" placeholder="Your name" maxlength="24" required>
+          <div><input id="roomCode" placeholder="Room code" maxlength="12" required><button>JOIN</button></div>
+          <button type="button" class="create-room" id="createRoom">CREATE A NEW CIRCLE</button>
+        </form>
+        <div class="circle-room" id="circleRoom" hidden>
+          <div class="room-bar"><span>CIRCLE <b id="activeRoom">—</b></span><button id="copyInvite">COPY INVITE</button></div>
+          <div class="friends" id="friends"></div>
+          <p class="privacy">Only your focus status, task, minutes, and sessions are shared.</p>
+        </div>
+      </section>
+    </aside>
+
+    <section class="stats">
+      <div class="garden-title"><div><div class="eyebrow"><span>03</span> YOUR GROVE</div><h2>Every focused minute leaves something behind.</h2></div><div class="forest-score"><strong id="forestCount">0</strong><span>PLANTS GROWN</span></div></div>
+      <div class="grove" id="grove"><div class="grove-empty">Finish your first track to plant something here.</div></div>
+      <div class="stat-grid">
+        <div><strong id="todayMinutes">0</strong><span>MINUTES TODAY</span></div>
+        <div><strong id="sessionCount">0</strong><span>TRACKS FINISHED</span></div>
+        <div><strong id="streak">0</strong><span>DAY STREAK</span></div>
+        <div class="week"><div class="week-head"><span>THIS WEEK</span><span id="weekTotal">0 MIN</span></div><div class="bars" id="weekBars"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">Thought parked. Back to the track.</div>
+  <script src="app.js"></script>
+</body>
+</html>

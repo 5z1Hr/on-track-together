@@ -1,0 +1,6 @@
+FROM node:20-alpine
+WORKDIR /app
+COPY . .
+ENV PORT=4174
+EXPOSE 4174
+CMD ["node", "server.js"]
